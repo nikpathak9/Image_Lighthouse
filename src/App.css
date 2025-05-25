@@ -1,0 +1,241 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #504e4e;
+  color: #333;
+}
+
+.App {
+  padding: 20px;
+  position: relative;
+}
+
+h1 {
+  text-align: left;
+  margin: 0 20px 16px;
+  color: cornflowerblue;
+}
+
+/* Image gallery layout */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 16px;
+}
+
+/* Image container styles */
+.image-container {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: white;
+  transition: transform 0.25s ease;
+  will-change: transform;
+}
+
+.image-container:hover {
+  transform: scale(1.05);
+}
+
+/* Overlay text container */
+.image-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+  white-space: nowrap;
+}
+
+.image-container:hover .image-overlay {
+  opacity: 1;
+}
+
+/* Image styles */
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.image-container img:hover {
+  filter: blur(3px);
+  transition: filter 0.3s ease;
+}
+
+/* Custom modal styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  padding: 12px 16px;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Close button container */
+.close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  z-index: 10;
+}
+
+/* Close button styles */
+.closeBtn {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: red;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  line-height: 28px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.closeBtn:hover {
+  background-color: rgba(255, 0, 0, 0.15);
+}
+
+/* Image wrapper with flex growth to fill space between buttons */
+.image-wrapper {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Modal image styles */
+.image-wrapper img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 8px;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+}
+
+/* Navigation buttons (Prev/Next) fixed width */
+.navBtn {
+  flex: 0 0 70px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.navBtn:hover {
+  background-color: #f0f0f0;
+}
+
+@media only screen and (max-width: 695px) {
+  .image-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    height: 50px;
+  }
+  .image-container {
+    height: 100px;
+  }
+
+  .image-overlay {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+}
+
+@media only screen and (max-width: 695px) {
+  .close {
+    position: relative;
+    top: 8px;
+    right: 12px;
+    z-index: 10;
+  }
+
+  .modal-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .image-wrapper {
+    flex: none;
+    width: 100%;
+    max-height: 80vh;
+  }
+
+  .image-wrapper img {
+    max-height: 80vh;
+    max-width: 90%;
+  }
+
+  .navBtn {
+    flex: none;
+    margin: 10px;
+  }
+
+  .modal-content .navBtn:nth-child(2) {
+    margin-right: 10px;
+  }
+
+  .navBtn.closeX {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: red;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .navBtn.closeX:hover {
+    background-color: rgba(255, 0, 0, 0.15);
+  }
+}
